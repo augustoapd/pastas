@@ -1,0 +1,24 @@
+.pasta {
+  border-left: solid 1px rgba(255,255,255,.12);
+}
+
+.secao {
+  padding: 0 20px
+}
+
+.pasta-text {
+  line-height: normal;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 24px;
+}
+
+.file {
+  height: 48px;
+  padding: 0 24px 0 16px;
+  cursor: pointer;
+}
+
+.file:hover {
+  filter: brightness(60%)
+}

@@ -1,0 +1,8 @@
+<mat-menu #fileMenu="matMenu">
+  <ng-template matMenuContent let-pasta="pasta">
+    <button mat-menu-item (click)="adicionarArquivo(pasta)">
+      <mat-icon>upload_file</mat-icon>
+      <span>Adicionar Arquivo</span>
+    </button>
+  </ng-template>
+</mat-menu>

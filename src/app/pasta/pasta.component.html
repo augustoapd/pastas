@@ -1,0 +1,62 @@
+<div *ngIf="pasta" class="pasta" fxLayout="column" fxLayoutGap="10px">
+  <mat-accordion multi *ngIf="pasta.pastas.length > 0">
+    <mat-expansion-panel
+      *ngFor="let pasta of pasta.pastas"
+      class="mat-elevation-z0"
+    >
+      <mat-expansion-panel-header (contextmenu)="onRightClickFolder($event, pasta)">
+        <mat-panel-title>
+          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="32px">
+            <mat-icon class="header-icon">folder</mat-icon>
+            <span class="pasta-name">
+              {{ pasta.nome }}
+            </span>
+          </div>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-pasta [pasta]="pasta"></app-pasta>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <div class="file-list" *ngIf="pasta.arquivos.length > 0">
+    <div
+      (contextmenu)="onRightClickFile($event, arquivo)"
+      (click)="onRightClickFile($event, arquivo)"
+      class="file"
+      *ngFor="let arquivo of pasta.arquivos"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <div
+        class="file-header"
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        fxLayoutGap="32px"
+      >
+        <mat-icon class="header-icon">note</mat-icon>
+        <div>
+          <div class="pasta-name">{{ arquivo.nome }}</div>
+          <div class="pasta-name">{{ arquivo.criadoEm }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="vazia" fxLayout="row" fxLayoutAlign="center center">
+    <span class="pasta-text">Essa pasta está vazia</span>
+  </div>
+</div>
+
+<div #matMenuTriggerFile="matMenuTrigger"
+  class="bucket-menu-trigger"
+  [style.left]="menuTopLeftPosition.x"
+  [style.top]="menuTopLeftPosition.y"
+  [matMenuTriggerFor]="menuArquivo.menu"
+></div>
+<app-menu-arquivo #menuArquivo></app-menu-arquivo>
+
+<div #matMenuTriggerFolder="matMenuTrigger"
+  class="bucket-menu-trigger"
+  [style.left]="menuTopLeftPosition.x"
+  [style.top]="menuTopLeftPosition.y"
+  [matMenuTriggerFor]="menuPasta.menu"
+></div>
+<app-menu-pasta #menuPasta></app-menu-pasta>
